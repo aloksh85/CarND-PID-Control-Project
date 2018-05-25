@@ -34,9 +34,9 @@ int main()
 
   PID pid;
   // TODO: Initialize the pid variable.
-  pid.Kp = 0.0020;
-  pid.Ki = 0.000190;
-  pid.Kd = 0.07;
+  pid.Kp = 0.135;
+  pid.Ki = 0.00290;
+  pid.Kd = 0.00073;
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
@@ -62,7 +62,7 @@ int main()
           */
           pid.UpdateError(cte);
 
-          steer_value = -pid.Kp*pid.p_error - pid.Kd*(cte-pid.d_error)
+          steer_value = -pid.Kp*pid.p_error - pid.Kd*pid.d_error
                                             - pid.Ki*pid.i_error;
           if (steer_value < -1.0)
             steer_value =-1.0;
