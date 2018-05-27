@@ -40,7 +40,8 @@ int main(int argc, char* argv[])
   else if (argc ==4) {
     pid.Init(std::stod(argv[1]),std::stod(argv[2]),std::stod(argv[3]));
   }
-  std::cout<<"kp: "<<pid.Kd<<", ki: "<<pid.Ki<<", kd: "<<pid.Kd<<std::endl;
+  // DEBUG
+  //std::cout<<"kp: "<<pid.Kd<<", ki: "<<pid.Ki<<", kd: "<<pid.Kd<<std::endl;
 
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
@@ -75,9 +76,9 @@ int main(int argc, char* argv[])
             steer_value = 1.0;
 
           // DEBUG
-          std::cout<<"p_error: "<<pid.p_error<<", d_error: "<<pid.d_error<<", i_error: "<<pid.i_error<<std::endl;
-          std::cout<<"p_gain: "<<pid.Kp<<", d_gain: "<<pid.Kd<<", i_gain: "<<pid.Ki<<std::endl;
-          std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
+          //std::cout<<"p_error: "<<pid.p_error<<", d_error: "<<pid.d_error<<", i_error: "<<pid.i_error<<std::endl;
+          //std::cout<<"p_gain: "<<pid.Kp<<", d_gain: "<<pid.Kd<<", i_gain: "<<pid.Ki<<std::endl;
+          //std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
