@@ -28,15 +28,20 @@ std::string hasData(std::string s) {
   return "";
 }
 
-int main()
+int main(int argc, char* argv[])
 {
   uWS::Hub h;
 
   PID pid;
   // TODO: Initialize the pid variable.
-  pid.Kp = 0.135;
-  pid.Ki = 0.00290;
-  pid.Kd = 0.00073;
+  if(argc < 4) {
+    pid.Init(0.15,0.0002,0.05);
+  }
+  else if (argc ==4) {
+    pid.Init(std::stod(argv[1]),std::stod(argv[2]),std::stod(argv[3]));
+  }
+  std::cout<<"kp: "<<pid.Kd<<", ki: "<<pid.Ki<<", kd: "<<pid.Kd<<std::endl;
+
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
