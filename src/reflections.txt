@@ -1,2 +1,31 @@
 What is the effect of P, I & D components ?
-P - component: 
+P - controller:
+The steering is directly proportional to the cross track error (CTE).
+With a low, proportional gain the steer angle is not large enough to correct the CTE and the car drives off the track in corners.
+With a large p-gain, the car starts swerving. It steers to correct the CTE, overshoots and then steers again in opposite direction
+
+
+PD controller:
+In addition to the proportional component, the steering angle depends on an additional derivative component that is proportional to change in error between two time steps.
+This helps damp the oscillations due to p-component since it starts reducing the steering angle as CTE reduces.
+This improved the driving a lot in straight line and and made driving through bends much more stable.
+
+
+PID controller
+When using a PID controller, there is an integral component that depends on the cumulative CTE error which helps solves problems like systemic bias.
+When using the PID controller, the car tries to stay more in the middle of the track.
+
+
+Tuning of PID controller:
+The controller was tuned manually for this project.
+The twiddle process has been implemented but it was not used to tune the controller
+Currently the car is able to get around the track at ~30MPH approx with gains (P: 0.1, I:0.0008, D:0.8)
+
+
+Notes and observations:
+1. There are some unexpected CTE jumps even when the car is in the center of a straight patch.
+2. This controller did not allow the car to keep a stable steering angle in bends. A human driver can usually keep the steering angle constant in bends
+
+Future efforts:
+1. Extend controller and add some speed controller to try higher speeds
+2. Try to use more techniques - sgd, root locus

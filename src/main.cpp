@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
   PID pid;
   // TODO: Initialize the pid variable.
   if(argc < 4) {
-    pid.Init(0.15,0.0002,0.05);
+    pid.Init(0.15,0.0008,0.8);
   }
   else if (argc ==4) {
     pid.Init(std::stod(argv[1]),std::stod(argv[2]),std::stod(argv[3]));
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
-          msgJson["throttle"] = 0.1;
+          msgJson["throttle"] = 0.3;
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
           std::cout << msg << std::endl;
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
