@@ -1,0 +1,2 @@
+What is the effect of P, I & D components ?
+P - component: 
